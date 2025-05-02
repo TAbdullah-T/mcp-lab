@@ -1,6 +1,6 @@
-# 🧠 FastMCP Crash Course – News + Stock Agents
+# 🧠 MCP Crash Course – News + Stock Agents
 
-This repo contains **two simple MCP servers** using [FastMCP](https://github.com/jlowin/fastmcp):
+This repo contains **two simple MCP servers**:
 
 1. **`news-reader`** — Fetches the latest headlines from major news websites (NPR, BBC).
 2. **`stock-news-agent`** — Fetches recent stock-related headlines for a given ticker from [Finviz](https://finviz.com/).
@@ -24,8 +24,6 @@ crash-course/
 ## 🧠 What Is MCP?
 
 Model Context Protocol (MCP) is an emerging open standard designed to let AI agents talk to local tools securely and naturally. Think of it as letting your LLM "call functions" that you define locally.
-
-These projects show how to create such tools using [FastMCP](https://github.com/jlowin/fastmcp), a lightweight Python framework to run MCP-compatible servers.
 
 ---
 
@@ -87,8 +85,6 @@ Sure! Here's the improved and well-formatted version of that section for your `R
 ---
 
 ## 🧠 How to Use with Claude Desktop
-
-Want Claude to use your local news tools? You can expose them to Claude Desktop using [FastMCP](https://github.com/jlowin/fastmcp) and MCP integration.
 
 ### ✅ Step-by-Step Setup
 
