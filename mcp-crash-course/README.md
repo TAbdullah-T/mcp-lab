@@ -9,10 +9,28 @@ These tools are exposed via the [Model Context Protocol (MCP)](https://modelcont
 
 ---
 
-## 📦 Contents
+### 📚 Table of Contents
+
+---
+
+* [MCP Crash Course – News + Stock Agents](#-mcp-crash-course--news--stock-agents)
+* [Contents](#-contents)
+* [What Is MCP?](#-what-is-mcp)
+* [`news_reader.py` – General News Agent](#-news_readerpy--general-news-agent)
+* [`stock_news_agent.py` – Stock News Agent](#-stock_news_agentpy--stock-news-agent)
+* [Setup Instructions](#️-setup-instructions)
+* [How to Use with Claude Desktop](#-how-to-use-with-claude-desktop)
+* [Example Prompts](#-example-prompts)
+* [Run on Claude Code](#️-run-on-claude-code)
+* [Debugging and Running Locally](#-debugging-and-running-locally)
+* [Notes](#-notes)
+
+---
+
+## 📦 Project structure
 
 ```bash
-crash-course/
+mcp-crash-course/
 ├── news_reader.py           # General news reader tool (NPR, BBC)
 ├── stock_news_agent.py      # Stock news scraping tool (Finviz)
 ├── requirements.txt
@@ -102,6 +120,8 @@ Download it from the [official website](https://claude.ai/download).
 
 Update your JSON config to include both the **stock-news agent** and the **daily news reader**:
 
+If you are using python:
+
 ```json
 {
   "mcpServers": {
@@ -118,6 +138,35 @@ Update your JSON config to include both the **stock-news agent** and the **daily
       "command": "<absolute path to your python executable>",
       "args": [
         "<absolute path to news_reader.py>"
+      ],
+      "host": "127.0.0.1",
+      "port": 8080,
+      "timeout": 30000
+    }
+  }
+}
+```
+If you are using uv:
+```json
+{
+  "mcpServers": {
+    "stock-news": {
+      "command": "uv",
+      "args": [
+        "<absolute path to stock_news_agent.py>",
+        "run",
+        "stock_news_agent.py"
+      ],
+      "host": "127.0.0.1",
+      "port": 5000,
+      "timeout": 30000
+    },
+    "read-daily-news": {
+      "command": "<absolute path to your python executable>",
+      "args": [
+        "<absolute path to news_reader.py>",
+        "run",
+        "stock_news_agent.py"
       ],
       "host": "127.0.0.1",
       "port": 8080,
@@ -160,6 +209,104 @@ In Claude, you can now simply say:
 > “Call the `get_latest_news` tool to show headlines from NPR.”
 
 Claude will run the corresponding Python script behind the scenes and return results using MCP.
+
+---
+
+## 🖥️ Run on Claude Code
+
+Claude Code **does not support Windows directly**, so you have three options:
+
+* Use a **Mac**
+* Use **Linux**
+* Use **WSL (Windows Subsystem for Linux)**
+
+If you're on Windows, follow this step-by-step WSL guide to set things up:
+👉 [Click here for the WSL setup guide](https://chatgpt.com/canvas/shared/67f7d6f1bfb48191b463ae33000177c6)
+
+---
+
+## 🐞 Debugging and Running Locally
+
+Follow the steps below to get started with debugging and running your tools.
+
+### 1. Install the MCP CLI
+
+```bash
+pip install mcp[cli]
+```
+
+### 2. Check if Node.js, npm, and npx are installed
+
+Open your terminal and type:
+
+```bash
+node -v
+npm -v
+npx -v
+```
+
+If you see version numbers (like `v18.16.1`), you're good to go.
+If it says "command not found" or something similar, continue to the next step.
+
+### 3. Install Node.js
+
+#### On **Windows** or **Mac**:
+
+* Visit: [https://nodejs.org](https://nodejs.org)
+* Download the **LTS version**
+* During installation, **check "Add to PATH"**
+* After installation, **restart your terminal**
+* Verify again with `node -v` and `npx -v`
+
+#### On **Linux**:
+
+Run the following commands in your terminal:
+
+```bash
+sudo apt update
+sudo apt install nodejs npm
+```
+
+Then check versions:
+
+```bash
+node -v
+npm -v
+npx -v
+```
+
+If you want a specific Node.js version, consider using [Node Version Manager (nvm)](https://github.com/nvm-sh/nvm).
+
+---
+
+### 4. Start Debugging
+
+Run the following command (replace with the actual path to your module):
+
+```bash
+mcp dev <path-to-your-module>/get_latest_news.py
+```
+
+You’ll be prompted:
+
+```bash
+Need to install the following packages:
+@modelcontextprotocol/inspector@0.11.0
+Ok to proceed? (y)
+```
+
+Type `y` and press **Enter**.
+
+After that, you’ll see something like:
+
+```bash
+Starting MCP inspector...
+⚙️ Proxy server listening on port 6277
+🔍 MCP Inspector is up and running at http://127.0.0.1:6274 🚀
+```
+
+Click the link or open it in your browser to use the tool inspector.
+There you can **list, run, and debug** your tools.
 
 ---
 
