@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "stock-news": {
+      "command": "C:\\Users\\farza\\anaconda3\\envs\\mcp-test\\python.exe",
+      "args": [
+        "D:\\Github\\mcp_lab\\mcp-crash-course\\src\\get_stock_news.py"
+      ],
+      "host": "127.0.0.1",
+      "port": 5000,
+      "timeout": 30000
+    }
+  }
+}
+

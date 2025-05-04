@@ -3,7 +3,7 @@
       "stock-news": {
         "command": "C:\\Users\\farza\\anaconda3\\envs\\mcp-test\\python.exe",
         "args": [
-          "D:\\Github\\mcp_test\\get_latest_news.py"
+          "D:\\Github\\mcp_lab\\mcp_crash_course\\src\\stock_news_server.py"
         ],
         "host": "127.0.0.1",
         "port": 5000,
@@ -12,7 +12,7 @@
       "read-daily-news": {
         "command": "C:\\Users\\farza\\anaconda3\\envs\\mcp-test\\python.exe",
         "args": [
-          "D:\\Github\\mcp_test\\read_news.py"
+          "D:\\Github\\mcp_lab\\mcp_crash_course\\src\\daily_news_server.py"
         ],
         "host": "127.0.0.1",
         "port": 8080,
@@ -20,3 +20,4 @@
       }
     }
   }
+

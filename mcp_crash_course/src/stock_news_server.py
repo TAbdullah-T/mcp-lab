@@ -59,5 +59,5 @@ def get_stock_news(ticker: str) -> str:
 
 
 if __name__ == "__main__":
-    print("Starting news-reader MCP server at PORT 8080...")
+    print("Starting stock-news MCP server at PORT 5000...")
     mcp.run()

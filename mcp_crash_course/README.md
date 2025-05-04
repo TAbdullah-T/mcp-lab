@@ -85,20 +85,40 @@ cd mcp-lab
 
 ```bash
 python -m venv .venv
-source .venv/bin/activate  # or .venv\Scripts\activate on Windows
-pip install -r requirements.txt
+.venv\Scripts\activate # on Windows or ```source .venv/bin/activate``` on Linux and Mac
 ```
 
-### 3. Start the Servers
+### 3. Install the dependencies
+
+**Using `pip`:**
 
 ```bash
-python news_reader.py          # Runs on port 8080
-python stock_news_agent.py     # Runs on port 5000
+pip install mcp beautifulsoup4 ipykernel requests mcp[cli]
 ```
 
----
+**Using `uv`:**
 
-Sure! Here's the improved and well-formatted version of that section for your `README.md`, with added clarity and formatting for beginners who follow along in your crash course:
+```bash
+uv add mcp beautifulsoup4 ipykernel requests mcp[cli]
+```
+
+### 4. Start the Servers
+
+**Using `pip`:**
+
+```bash
+python src\daily_news_server.py
+python src\stock_news_server.py
+```
+
+**Using `uv`:**
+
+```bash
+uv run src\daily_news_server.py
+uv run src\stock_news_server.py
+```
+
+Now that the servers are running, we can integrate them into `Claude Desktop` or `OLLAMA`.
 
 ---
 
@@ -120,53 +140,30 @@ Download it from the [official website](https://claude.ai/download).
 
 Update your JSON config to include both the **stock-news agent** and the **daily news reader**:
 
-If you are using python:
+If you are using `uv`:
 
 ```json
 {
   "mcpServers": {
     "stock-news": {
-      "command": "<absolute path to your python executable>",
+      "command": "C:\\Users\\farza\\anaconda3\\envs\\mcp-test\\Scripts\\uv.exe",
       "args": [
-        "<absolute path to stock_news_agent.py>"
+        "--directory",
+        "D:\\Github\\mcp_lab\\mcp_crash_course\\src",
+        "run",
+        "stock_news_server.py"
       ],
       "host": "127.0.0.1",
       "port": 5000,
       "timeout": 30000
     },
     "read-daily-news": {
-      "command": "<absolute path to your python executable>",
+      "command": "C:\\Users\\farza\\anaconda3\\envs\\mcp-test\\Scripts\\uv.exe",
       "args": [
-        "<absolute path to news_reader.py>"
-      ],
-      "host": "127.0.0.1",
-      "port": 8080,
-      "timeout": 30000
-    }
-  }
-}
-```
-If you are using uv:
-```json
-{
-  "mcpServers": {
-    "stock-news": {
-      "command": "uv",
-      "args": [
-        "<absolute path to stock_news_agent.py>",
+        "--directory",
+        "D:\\Github\\mcp_lab\\mcp_crash_course\\src",
         "run",
-        "stock_news_agent.py"
-      ],
-      "host": "127.0.0.1",
-      "port": 5000,
-      "timeout": 30000
-    },
-    "read-daily-news": {
-      "command": "<absolute path to your python executable>",
-      "args": [
-        "<absolute path to news_reader.py>",
-        "run",
-        "stock_news_agent.py"
+        "daily_news_server.py"
       ],
       "host": "127.0.0.1",
       "port": 8080,
@@ -176,7 +173,10 @@ If you are using uv:
 }
 ```
 
-> 🔍 **How to find paths:**
+You can fine more examples for both `pip` and `uv` in `anthropic_developer_config_templates` folder.
+
+```
+> 🔍 **How to find absolute paths:**
 >
 > * On **Mac/Linux**, activate your environment and run:
 >
@@ -188,11 +188,8 @@ If you are using uv:
 >   ```bash
 >   where python
 >   ```
-> * To get the absolute path of your `.py` files, right-click them and copy full path or run:
->
->   ```bash
->   realpath stock_news_agent.py
->   ```
+> * To get the absolute path of your `.py` files, right-click them and copy path.
+```
 
 #### 4. Save the File and Restart Claude Desktop
 
@@ -212,19 +209,6 @@ Claude will run the corresponding Python script behind the scenes and return res
 
 ---
 
-## 🖥️ Run on Claude Code
-
-Claude Code **does not support Windows directly**, so you have three options:
-
-* Use a **Mac**
-* Use **Linux**
-* Use **WSL (Windows Subsystem for Linux)**
-
-If you're on Windows, follow this step-by-step WSL guide to set things up:
-👉 [Click here for the WSL setup guide](https://chatgpt.com/canvas/shared/67f7d6f1bfb48191b463ae33000177c6)
-
----
-
 ## 🐞 Debugging and Running Locally
 
 Follow the steps below to get started with debugging and running your tools.
@@ -233,6 +217,8 @@ Follow the steps below to get started with debugging and running your tools.
 
 ```bash
 pip install mcp[cli]
+or
+uv add mcp[cli]
 ```
 
 ### 2. Check if Node.js, npm, and npx are installed
@@ -267,15 +253,13 @@ sudo apt update
 sudo apt install nodejs npm
 ```
 
-Then check versions:
+Then check versions ad verify the installation:
 
 ```bash
 node -v
 npm -v
 npx -v
 ```
-
-If you want a specific Node.js version, consider using [Node Version Manager (nvm)](https://github.com/nvm-sh/nvm).
 
 ---
 

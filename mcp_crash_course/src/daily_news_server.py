@@ -65,5 +65,5 @@ def get_latest_news(source: str = "npr") -> str:
 
 
 if __name__ == "__main__":
-    print("Starting news-reader MCP server at PORT 8080...")
+    print("Starting daily-news MCP server at PORT 8080...")
     mcp.run()
