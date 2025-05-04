@@ -1,16 +1,27 @@
 from praisonaiagents import Agent, MCP
-from openai import OpenAI
-import os
-from dotenv import load_dotenv
-load_dotenv("../.env")
 
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+# LLM choices: llama3.2 (3B), falcon3 (7B)
 
 single_agent = Agent(
-    instructions="You are a helpful assistant.",
-    # llm="ollama/llama3.2",
-    llm="gpt-4o-mini",
-    tools=MCP("C:\\Users\\farza\\anaconda3\\envs\\mcp-test\\python.exe servers\\daily_news_server.py")
+    instructions="You are a helpful assistant. Only call the tool if the user asks for it.",
+    llm="ollama/falcon3",
+    tools=MCP("python src/servers/daily_news.py")
 )
-single_agent.start(
-    "Do you have access to any tools that I provided to you? Specifically get_stock_news")
+
+print("🔧 Agent initialized. You can now chat with it (type 'exit' to quit).")
+print("--------------------------------------------------------------")
+
+# Interactive loop
+while True:
+    try:
+        user_input = input("🧑 You: ")
+        if user_input.lower() in ["exit", "quit"]:
+            print("👋 Exiting chat.")
+            break
+        response = single_agent.start(user_input)
+        print(f"🤖 Agent: {response}\n")
+    except KeyboardInterrupt:
+        print("\n👋 Interrupted. Exiting chat.")
+        break
+    except Exception as e:
+        print(f"⚠️ Error: {e}")
