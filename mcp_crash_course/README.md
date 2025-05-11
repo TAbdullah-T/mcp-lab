@@ -138,6 +138,8 @@ Download it from the [official website](https://claude.ai/download).
 
 #### 3. Add Your MCP Servers
 
+##### Local servers
+
 Update your JSON config to include both the **stock-news agent** and the **daily news reader**:
 
 If you are using `uv`:
@@ -189,6 +191,26 @@ You can fine more examples for both `pip` and `uv` in `anthropic_developer_confi
 >   where python
 >   ```
 > * To get the absolute path of your `.py` files, right-click them and copy path.
+```
+
+##### Remote/Public servers
+
+You can find a list of available MCP servers in this [repository](https://github.com/punkpeye/awesome-mcp-servers?tab=readme-ov-file).
+
+Example config for connecting to [airbnb-server](https://github.com/openbnb-org/mcp-server-airbnb):
+
+```json
+{
+  "mcpServers": {
+    "airbnb": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@openbnb/mcp-server-airbnb"
+      ]
+    }
+  }
+}
 ```
 
 #### 4. Save the File and Restart Claude Desktop
@@ -300,3 +322,76 @@ There you can **list, run, and debug** your tools.
 * Make sure not to abuse web scraping—respect the terms of service of the sites used.
 
 ---
+
+## 🧠 How to Use with Ollama
+
+### ✅ Step-by-Step Setup (Linux / WSL)
+
+To run MCP with Ollama, you'll need a **Linux environment**. If you're using Windows, I recommend setting up **WSL (Windows Subsystem for Linux)**.
+
+#### 1. Set Up Environment
+
+* If you haven't already, install WSL:
+  [Install WSL Guide](https://learn.microsoft.com/en-us/windows/wsl/install)
+
+* Follow the steps in the previous sections to install **Node.js** and **npm**.
+
+* Set up a Python environment and install the required libraries.
+
+#### 2. Install Ollama
+
+* Download and install Ollama from the official site:
+  [https://ollama.com](https://ollama.com)
+
+* Open a terminal and pull your desired models (make sure they support **tool calling**):
+
+```bash
+ollama pull llama3.2
+ollama pull falcon3
+```
+
+#### 3. Run MCP with Ollama (Local Tools)
+
+There are a few framework that would allow you to use the MCP servers with OLLAMA. I am using `praisonaiagents` due to its bigger community. 
+
+Install it using
+```bash
+pip install praisonaiagents
+```
+
+Use this template to connect Ollama to a **local MCP tool**:
+
+```python
+from praisonaiagents import Agent, MCP
+
+single_agent = Agent(
+    instructions="You are a helpful assistant. Only call the tool if the user asks for it.",
+    llm="ollama/falcon3",
+    tools=MCP("python src/servers/daily_news.py")
+)
+
+user_input = "Call the get_latest_news tool to show headlines from NPR."
+response = single_agent.start(user_input)
+print(response)
+```
+
+#### 4. Run MCP with Ollama (Remote/Public Tools)
+
+To connect to a **public MCP server**, use the following template:
+
+```python
+from praisonaiagents import Agent, MCP
+
+external_agent = Agent(
+    instructions="test",
+    llm="ollama/llama3.2",
+    tools=MCP("npx @openbnb/mcp-server-airbnb")
+)
+
+user_input = "Find an apartment in Italy for 25 of September 2025."
+response = external_agent.start(user_input)
+print(response)
+```
+
+---
+
