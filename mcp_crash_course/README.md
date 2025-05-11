@@ -24,6 +24,9 @@ These tools are exposed via the [Model Context Protocol (MCP)](https://modelcont
 * [Run on Claude Code](#️-run-on-claude-code)
 * [Debugging and Running Locally](#-debugging-and-running-locally)
 * [Notes](#-notes)
+* [How to Use MCP with Ollama](#-how-to-use-mcp-with-ollama)
+* [Run MCP with Ollama (Local Tools)](#-run-mcp-with-ollama-(Local-Tools))
+* [Run MCP with Ollama (Remote/Public Tools)](#-run-mcp-with-ollama-(remote/public-tools))
 
 ---
 
@@ -323,7 +326,7 @@ There you can **list, run, and debug** your tools.
 
 ---
 
-## 🧠 How to Use with Ollama
+## 🧠 How to Use MCP with Ollama
 
 ### ✅ Step-by-Step Setup (Linux / WSL)
 
@@ -395,3 +398,23 @@ print(response)
 
 ---
 
+
+## 🧠 How to Use MCP with OpenAI
+
+You can use the same library `praisonaiagents` to run MCP servers with OpenAI models. Sample code:
+
+```python
+from praisonaiagents import Agent, MCP
+
+external_agent = Agent(
+    instructions="test",
+    llm="gpt-4o-mini",
+    tools=MCP("npx @openbnb/mcp-server-airbnb")
+)
+
+user_input = "Find an apartment in Italy for 25 of September 2025."
+response = external_agent.start(user_input)
+print(response)
+```
+
+---
