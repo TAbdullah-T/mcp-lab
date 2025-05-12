@@ -1,10 +1,10 @@
 from praisonaiagents import Agent, MCP, PraisonAIAgents
 
-# LLM choices: llama3.2 (3B), falcon3 (7B)
+# LLM choices: llama3.2 (3B), falcon3 (3B), falcon3:7b (7B)
 
 daily_news_agent = Agent(
     instructions="You are a helpful assistant with access to a tool. Call it when the user asks for it.",
-    llm="ollama/falcon3",
+    llm="ollama/falcon3:7b",
     tools=MCP("python src/servers/daily_news.py")
 )
 stock_news_agent = Agent(
