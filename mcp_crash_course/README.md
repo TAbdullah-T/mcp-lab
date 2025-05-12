@@ -294,7 +294,7 @@ To run MCP with Ollama, you'll need a **Linux environment**. If you're using Win
 * If you haven't already, install WSL:
   [Install WSL Guide](https://learn.microsoft.com/en-us/windows/wsl/install)
 
-* Follow the steps in the previous sections to install **Node.js** and **npm**.
+* Follow the steps in the previous sections to install **Node.js**, **npm**, and **npx**.
 
 * Set up a Python environment and install the required libraries.
 
@@ -314,8 +314,9 @@ curl https://ollama.ai/install.sh | sh
 * Open a terminal and pull your desired models (make sure they support **tool calling**):
 
 ```bash
-ollama pull llama3.2
-ollama pull falcon3
+ollama pull llama3.2 # 3B parameter model
+ollama pull falcon3 # 3B parameter model
+ollama pull falcon3:7b # 7B parameter model
 ```
 
 #### 3. Run MCP with Ollama (Local Tools)
