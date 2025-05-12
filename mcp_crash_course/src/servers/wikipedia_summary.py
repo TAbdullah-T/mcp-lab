@@ -4,7 +4,7 @@ import signal
 import sys
 
 mcp = FastMCP(name="wikipedia-summary-agent",
-              host="127.0.0.1", port=5000, timeout=30)
+              host="127.0.0.1", port=5050, timeout=30)
 
 
 def signal_handler(sig, frame):
@@ -47,5 +47,5 @@ def get_wikipedia_summary(topic: str) -> str:
 
 
 if __name__ == "__main__":
-    print("Starting Wikipedia Summary MCP server on PORT 5000...")
+    print("Starting Wikipedia Summary MCP server on PORT 5050...")
     mcp.run()

@@ -4,9 +4,9 @@
       "command": "C:\\Users\\farza\\anaconda3\\envs\\mcp-test\\Scripts\\uv.exe",
       "args": [
         "--directory",
-        "D:\\Github\\mcp_lab\\mcp-crash-course\\src",
+        "D:\\Github\\mcp_lab\\mcp-crash-course\\src\\servers",
         "run",
-        "get_stock_news.py"
+        "stock_news.py"
       ],
       "host": "127.0.0.1",
       "port": 5000,
@@ -16,9 +16,9 @@
       "command": "C:\\Users\\farza\\anaconda3\\envs\\mcp-test\\Scripts\\uv.exe",
       "args": [
         "--directory",
-        "D:\\Github\\mcp_lab\\mcp-crash-course\\src",
+        "D:\\Github\\mcp_lab\\mcp-crash-course\\src\\servers",
         "run",
-        "get_latest_news.py"
+        "daily_news.py"
       ],
       "host": "127.0.0.1",
       "port": 8080,
