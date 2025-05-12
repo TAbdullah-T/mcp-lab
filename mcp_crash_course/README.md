@@ -321,18 +321,35 @@ pip install praisonaiagents
 
 Use this template to connect Ollama to a **local MCP tool**:
 
+**Add Single Tools**
+
 ```python
 from praisonaiagents import Agent, MCP
 
-single_agent = Agent(
-    instructions="You are a helpful assistant. Only call the tool if the user asks for it.",
+single_tools_agent = Agent(
+    instructions="You are a helpful assistant with access to a tool. Call the tool if the user asks for it.",
     llm="ollama/falcon3",
     tools=MCP("python src/servers/daily_news.py")
 )
 
 user_input = "Call the get_latest_news tool to show headlines from NPR."
-response = single_agent.start(user_input)
+response = single_tools_agent.start(user_input)
 print(response)
+```
+
+**Add Multiple Tools**
+```python
+daily_news_agent = Agent(
+    instructions="You are a helpful assistant with access to a tool. Call it when the user asks for it.",
+    llm="ollama/falcon3",
+    tools=MCP("python src/servers/daily_news.py")
+)
+stock_news_agent = Agent(
+    instructions="You are a helpful assistant with access to a tool. Call it when the user asks for it.",
+    llm="ollama/falcon3",
+    tools=MCP("python src/servers/stock_news.py")
+)
+multi_tools_agents = PraisonAIAgents(agents=[daily_news_agent, stock_news_agent])
 ```
 
 #### 4. Run MCP with Ollama (Remote/Public Tools)
@@ -342,14 +359,14 @@ To connect to a **public MCP server**, use the following template:
 ```python
 from praisonaiagents import Agent, MCP
 
-external_agent = Agent(
-    instructions="test",
+external_tool_agent = Agent(
+    instructions="You are a helpful assistant with access to a tool. Call the tool if the user asks for it.",
     llm="ollama/llama3.2",
     tools=MCP("npx @openbnb/mcp-server-airbnb")
 )
 
 user_input = "Find an apartment in Italy for 25 of September 2025."
-response = external_agent.start(user_input)
+response = external_tool_agent.start(user_input)
 print(response)
 ```
 
@@ -363,14 +380,14 @@ You can use the same library `praisonaiagents` to run MCP servers with OpenAI mo
 ```python
 from praisonaiagents import Agent, MCP
 
-external_agent = Agent(
-    instructions="test",
+external_tool_agent = Agent(
+    instructions="You are a helpful assistant with access to a tool. Call the tool if the user asks for it.",
     llm="gpt-4o-mini",
     tools=MCP("npx @openbnb/mcp-server-airbnb")
 )
 
 user_input = "Find an apartment in Italy for 25 of September 2025."
-response = external_agent.start(user_input)
+response = external_tool_agent.start(user_input)
 print(response)
 ```
 

@@ -2,9 +2,9 @@ from praisonaiagents import Agent, MCP
 
 # LLM choices: llama3.2 (3B), falcon3 (7B)
 
-single_agent = Agent(
+single_tool_agent = Agent(
     instructions="You are a helpful assistant. Only call the tool if the user asks for it.",
-    llm="ollama/falcon3",
+    llm="ollama/llama3.2",
     tools=MCP("python src/servers/daily_news.py")
 )
 
@@ -18,7 +18,7 @@ while True:
         if user_input.lower() in ["exit", "quit"]:
             print("👋 Exiting chat.")
             break
-        response = single_agent.start(user_input)
+        response = single_tool_agent.start(user_input)
         print(f"🤖 Agent: {response}\n")
     except KeyboardInterrupt:
         print("\n👋 Interrupted. Exiting chat.")
