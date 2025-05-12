@@ -329,7 +329,7 @@ pip install praisonaiagents
 
 Use this template to connect Ollama to a **local MCP tool**:
 
-**Add Single Tools**
+**Add a Single Tool**
 
 ```python
 from praisonaiagents import Agent, MCP
