@@ -303,6 +303,14 @@ To run MCP with Ollama, you'll need a **Linux environment**. If you're using Win
 * Download and install Ollama from the official site:
   [https://ollama.com](https://ollama.com)
 
+**To install Ollama on Linux run:**
+
+```bash
+sudo apt update && sudo apt upgrade
+
+curl https://ollama.ai/install.sh | sh
+```
+
 * Open a terminal and pull your desired models (make sure they support **tool calling**):
 
 ```bash
