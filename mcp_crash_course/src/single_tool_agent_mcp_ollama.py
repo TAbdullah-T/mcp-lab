@@ -1,6 +1,6 @@
 from praisonaiagents import Agent, MCP
 
-# LLM choices: llama3.2 (3B), falcon3 (7B)
+# LLM choices: llama3.2 (3B), falcon3 (3B), falcon3:7b (7B)
 
 single_tool_agent = Agent(
     instructions="You are a helpful assistant. Only call the tool if the user asks for it.",
