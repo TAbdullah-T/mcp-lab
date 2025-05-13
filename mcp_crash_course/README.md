@@ -4,6 +4,10 @@ This repo demonstrates how to run local and remote [Model Context Protocol (MCP)
 
 ---
 
+YouTube Video: [URL](https://youtu.be/StgbwIQH-C4)
+
+---
+
 ### 📚 Table of Contents
 
 ---

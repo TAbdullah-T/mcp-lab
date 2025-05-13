@@ -69,3 +69,7 @@ PRs are welcome! Follow the format of existing folders and include:
 - Optional: video or blog post link
 
 ---
+
+MCP-Crash-Course YouTube Video: [URL](https://youtu.be/StgbwIQH-C4)
+
+---
