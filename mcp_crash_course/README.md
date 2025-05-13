@@ -321,9 +321,16 @@ ollama pull falcon3:7b # 7B parameter model
 
 #### 3. Run MCP with Ollama (Local Tools)
 
-There are a few framework that would allow you to use the MCP servers with OLLAMA. I am using `praisonaiagents` due to its bigger community. 
+There are a few framework that would allow you to use the MCP servers with OLLAMA. I am using `praisonaiagents` due to its bigger community.
 
-Install it using
+---
+
+> ⚠️ **Security Warning**
+> The `praisonaiagents` library is a third-party tool not affiliated with this project. **Exercise caution when using it, especially with services like OpenAI that require API keys or handle sensitive data.** Review the library's source code before use and avoid running untrusted MCP tools, as doing so could potentially expose your credentials or data to malicious behavior.
+
+---
+
+**Install it using**
 ```bash
 pip install praisonaiagents
 ```
