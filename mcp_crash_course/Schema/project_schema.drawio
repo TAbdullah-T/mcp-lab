@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram name="Page-1" id="xwPf36MFEoy99nyk6V8D">
-        <mxGraphModel dx="3133" dy="343" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="2770" dy="772" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -623,13 +623,13 @@
                 <mxCell id="115" value="Claude Desktop:&#xa;&#xa;" style="text;whiteSpace=wrap;fontSize=27;fontColor=light-dark(#000000,#CCFFCC);fontStyle=1" parent="244" vertex="1">
                     <mxGeometry x="8" y="141" width="550" height="56" as="geometry"/>
                 </mxCell>
-                <mxCell id="116" value="- How to use MCP with Ollama &#xa;             - Single agent with local MCP server&#xa;             - Multi agents with local MCP servers&#xa;             - Agent with access to remote/public MCP servers" style="text;whiteSpace=wrap;fontSize=27;" parent="244" vertex="1">
+                <mxCell id="116" value="- How to use MCP with Ollama &#xa;             - Agent with access to one local MCP server&#xa;             - Agent with access to multiple local MCP servers&#xa;             - Agent with access to remote/public MCP servers" style="text;whiteSpace=wrap;fontSize=27;" parent="244" vertex="1">
                     <mxGeometry x="6" y="423" width="711" height="153" as="geometry"/>
                 </mxCell>
-                <mxCell id="117" value="- How to use MCP with OpenAI models" style="text;whiteSpace=wrap;fontSize=27;" parent="244" vertex="1">
+                <mxCell id="117" value="- How to use MCP servers with OpenAI models" style="text;whiteSpace=wrap;fontSize=27;" parent="244" vertex="1">
                     <mxGeometry x="10" y="641" width="611" height="36" as="geometry"/>
                 </mxCell>
-                <mxCell id="118" value="- How to use MCP with Claude Desktop &#xa;              - Single tool agent with local MCP server&#xa;              - Multi tools agent with local MCP servers&#xa;              - Agent with access to remote/public MCP servers &#xa;- How to debug it" style="text;whiteSpace=wrap;fontSize=27;" parent="244" vertex="1">
+                <mxCell id="118" value="- How to use MCP with Claude Desktop &#xa;              - Agent with access to one local MCP server&#xa;              - Agent with access to multiple local MCP servers&#xa;              - Agent with access to remote/public MCP servers &#xa;- Different methods to debug MCP servers" style="text;whiteSpace=wrap;fontSize=27;" parent="244" vertex="1">
                     <mxGeometry x="8" y="187" width="716" height="210" as="geometry"/>
                 </mxCell>
                 <mxCell id="119" value="Ollama:" style="text;whiteSpace=wrap;fontSize=27;fontColor=light-dark(#000000,#FF9999);fontStyle=1" parent="244" vertex="1">
