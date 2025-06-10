@@ -1,0 +1,15 @@
+[project]
+name = "mcp-crash-course"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "beautifulsoup4>=4.13.4",
+    "ipykernel>=6.29.5",
+    "llama-index>=0.12.40",
+    "llama-index-llms-ollama>=0.6.1",
+    "mcp[cli]>=1.9.3",
+    "praisonaiagents[llm]>=0.0.102",
+    "requests>=2.32.3",
+]
